@@ -2,14 +2,14 @@
   ServerName 127.0.0.1
   ServerAdmin <%= node[:apache][:contact] %>
 
-  DocumentRoot /var/www/
+  DocumentRoot /var/www/html/
 
   <Directory />
     Options FollowSymLinks
     AllowOverride None
   </Directory>
 
-  <Directory /var/www/>
+  <Directory /var/www/html/>
     Options -Indexes FollowSymLinks MultiViews
     AllowOverride None
     Order allow,deny
