@@ -4,6 +4,10 @@ script "install_tomecat8" do
   cwd "/tmp"
   code <<-EOH
       #!/bin/bash
+      logfile=/var/log/rds.log
+      #Start the logging
+      exec >> $logfile 2>&1
+
       JDK_VERSION="1.8.0_65"
       TOMCAT_VERSION="8.0.28"
            
