@@ -4,7 +4,7 @@ script "install_tomecat8" do
   cwd "/tmp"
   code <<-EOH
       #!/bin/bash
-      logfile=/var/log/rds.log
+      logfile=/var/log/tomcat-install.log
       #Start the logging
       exec >> $logfile 2>&1
 
