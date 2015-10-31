@@ -58,32 +58,32 @@ script "install_tomecat8" do
       sudo -n yum install tomcat-native.x86_64 -y -q
       cd ${HOME}
       # Set system limits
-      cat <<EOF | sudo -n tee /etc/security/limits.d/91-tomcat.conf
-      tomcat - nproc 50000
-      tomcat - stack unlimited
-      tomcat - nofile 500000
-      tomcat - as unlimited
-      tomcat - memlock unlimited
-      root - memlock unlimited
-      root - nofile 100000
-      root - nproc 32768
-      root - as unlimited
-      EOF
-      # Disable upgrade on startup
-      cat <<EOF | sudo -n tee /etc/cloud/cloud.cfg.d/10_noupgrade.cfg
-      repo_upgrade: none
-      EOF
-      #Add custom log rotation for tomcat (default config is already under /etc/logrotate.d/tomcat7), OPS-78/SIQ-2716
-      cat <<EOF | sudo -n tee  /etc/logrotate.d/tomcat8
-      /var/log/tomcat8/catalina.out {
-         copytruncate
-         size 100M
-         rotate 5
-         compress
-         missingok
-         create 0644 tomcat tomcat
-      }
-      EOF
+cat <<EOF | sudo -n tee /etc/security/limits.d/91-tomcat.conf
+tomcat - nproc 50000
+tomcat - stack unlimited
+tomcat - nofile 500000
+tomcat - as unlimited
+tomcat - memlock unlimited
+root - memlock unlimited
+root - nofile 100000
+root - nproc 32768
+root - as unlimited
+EOF
+# Disable upgrade on startup
+cat <<EOF | sudo -n tee /etc/cloud/cloud.cfg.d/10_noupgrade.cfg
+repo_upgrade: none
+EOF
+#Add custom log rotation for tomcat (default config is already under /etc/logrotate.d/tomcat7), OPS-78/SIQ-2716
+cat <<EOF | sudo -n tee  /etc/logrotate.d/tomcat8
+/var/log/tomcat8/catalina.out {
+   copytruncate
+   size 100M
+   rotate 5
+   compress
+   missingok
+   create 0644 tomcat tomcat
+}
+EOF
       sudo -n chown tomcat:tomcat /etc/tomcat8/tomcat8.conf
       sudo -n service tomcat8 restart
   EOH
