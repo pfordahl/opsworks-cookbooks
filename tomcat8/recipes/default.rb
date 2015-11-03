@@ -6,5 +6,5 @@ end
 execute "tomcat-install.sh" do
   user "root"
   cwd "/tmp"
-  command "./tomcat-install"
+  command "./tomcat-install.sh"
 end
