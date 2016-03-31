@@ -1,5 +1,5 @@
 #!/bin/bash
-echo
+echo 1
       logfile=/var/log/tomcat-install.log
       #Start the logging
       exec >> $logfile 2>&1
